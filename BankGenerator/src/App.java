@@ -16,6 +16,8 @@ public class App {
             System.out.println("1 - Criar conta");
             System.out.println("2 - Buscar conta");
             System.out.println("3 - Listar contas");
+            System.out.println("4 - Depositar");
+            System.out.println("5 - Sacar");
             System.out.println("0 - Sair");
             System.out.print("Opção: ");
             int option = scanner.nextInt();
@@ -67,6 +69,34 @@ public class App {
                         }
                     } else {
                         System.out.println("Não há contas na agência.");
+                    }
+                    break;
+                
+                case 4:
+                    System.out.print("Digite o ID da conta para depositar: ");
+                    int depositAccountId = scanner.nextInt();
+                    System.out.print("Digite o valor a ser depositado: ");
+                    double depositAmount = scanner.nextDouble();
+                    scanner.nextLine(); 
+                    BankAccount depositAccount = agency.searchAccount(depositAccountId);
+                    if (depositAccount != null) {
+                        depositAccount.deposit(depositAmount);
+                    } else {
+                        System.out.println("Conta não encontrada para o ID: " + depositAccountId);
+                    }
+                    break;
+                
+                case 5:
+                    System.out.print("Digite o ID da conta para sacar: ");
+                    int withdrawAccountId = scanner.nextInt();
+                    System.out.print("Digite o valor a ser sacado: ");
+                    double withdrawAmount = scanner.nextDouble();
+                    scanner.nextLine(); 
+                    BankAccount withdrawAccount = agency.searchAccount(withdrawAccountId);
+                    if (withdrawAccount != null) {
+                        withdrawAccount.withdraw(withdrawAmount);
+                    } else {
+                        System.out.println("Conta não encontrada para o ID: " + withdrawAccountId);
                     }
                     break;
 
